@@ -3,8 +3,8 @@ from scipy.linalg import solve
 from pylab import plot, legend, grid, show
 
 a = 0.0
-b = 1.0
-N = 100 #number of points on grid
+b = 0.1
+N = 10 #number of points on grid
 
 # test function
 def testFunc(x):
@@ -39,7 +39,7 @@ def chebInterpol(N, a, b):
     
     # plot the Chebyshev nodes and the interpolation
     plot(x, f, 'r.', label = "func(Chebyshev nodes)")
-    plot(xnew, fnew, 'g-', label = "Chebyshev interpolation")
+    plot(xnew, fnew, 'go', label = "Chebyshev interpolation")
     legend(loc="best")
     grid(True)
     show()
