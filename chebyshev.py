@@ -28,7 +28,7 @@ def chebInterpol(N, a, b):
     f = testFunc(x)
     C = solve(TNx, f)
     
-    # form a uniform grid on [-1,1] check interpolation
+    # form a uniform grid on [-1,1] to test interpolation
     xnew = linspace(-1.0, 1.0, N)
     # form the C-V matrix for new grid
     TNxnew = cos(outer(arccos(xnew), i))/(pow(2.0, N-1))
