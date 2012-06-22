@@ -1,4 +1,4 @@
-from numpy import arange, outer, cos, pi, arccos, dot, linspace
+from numpy import arange, outer, cos, pi, arccos, dot, linspace, exp
 from scipy.linalg import solve
 from pylab import plot, legend, grid, show
 
@@ -8,7 +8,7 @@ N = 10 #number of points on grid
 
 # test function
 def testFunc(x):
-    return cos(10*x)
+    return exp(-10*x*x)
 
 # transform any interval to [a,b]
 def affineTransform(x, a, b):
