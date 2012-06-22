@@ -21,7 +21,7 @@ def chebInterpol(N, a, b):
     # Chebyshev nodes on [-1,1]
     x = -cos(pi*(2.0*i + 1.0)/(2.0*(N-1) + 2.0)) 
     # form the (normalized) Chebyshev-Vandermonde matrix
-    TNx = cos(outer(arccos(x), i))/(pow(2.0, N-1))
+    TNx = cos(outer(arccos(x), i))/(pow(2.0, i-1))
     
     # scale to physical interval [a,b]
     x = affineTransform(x, a, b)
@@ -31,7 +31,7 @@ def chebInterpol(N, a, b):
     # form a uniform grid on [-1,1] to test interpolation
     xnew = linspace(-1.0, 1.0, N)
     # form the C-V matrix for new grid
-    TNxnew = cos(outer(arccos(xnew), i))/(pow(2.0, N-1))
+    TNxnew = cos(outer(arccos(xnew), i))/(pow(2.0, i-1))
     
     # scale to [a,b]
     xnew = affineTransform(xnew, a, b)
