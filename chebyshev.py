@@ -3,9 +3,9 @@ from scipy.linalg import solve
 import sympy, sympy.abc
 from pylab import zeros, plot, legend, grid, show
 
-a = -1.0 # lower integration limit
-b = 1.0 # upper integration limit
-N = 50 # number of points on grid
+a = 2.0 # lower integration limit
+b = 4.0 # upper integration limit
+N = 10 # number of points on grid
 
 # test function
 def testFunc(x):
@@ -30,6 +30,7 @@ def chebInterpol(N, a, b):
     i = arange(N)
     # Chebyshev nodes on [-1,1]
     x = -cos(pi*(2.0*i + 1.0)/(2.0*(N-1) + 2.0)) 
+    
     # form the (normalized) Chebyshev-Vandermonde matrix
     TNx = cos(outer(arccos(x), i))/(pow(2.0, i-1))    
     # scale to physical interval [a,b]
