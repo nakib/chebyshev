@@ -7,9 +7,10 @@ a = 0.0 # lower integration limit
 b = 1.0 # upper integration limit
 N = 20 # number of points on grid
 
+
 # test function
 def testFunc(x):
-    return cos(2*x)
+    return sin(x)
 
 # transform [-1,1] to [a,b]
 def affineTransform(x, a, b):
@@ -18,10 +19,11 @@ def affineTransform(x, a, b):
 # integrate function analytically in [-1,1]
 def integrate(C, a, b):
     I = 0.0
+    c = (b-a)/2.0
     for i in range(0, N):
-        I += C[i]*sympy.integrate(sympy.cos(i*sympy.acos(sympy.abc.x))/(pow(2.0, i-1)), (sympy.abc.x, -1, 1))
+        I += c*C[i]*sympy.integrate(sympy.cos(i*sympy.acos(sympy.abc.x))/(pow(2.0, i-1)), (sympy.abc.x, -1.0, 1.0))
     print("polynomial approximation, I = " + str(I))
-    I_analytical = sympy.integrate(sympy.cos(2*sympy.abc.x), (sympy.abc.x, a, b))
+    I_analytical = sympy.integrate(sympy.sin(sympy.abc.x), (sympy.abc.x, a, b))
     print("analytical solution, I_analytical = " + str(I_analytical))
 
 # Form a Chebyshev mesh and perform the Chebyshev interpolation
