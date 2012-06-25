@@ -3,13 +3,13 @@ from scipy.linalg import solve
 import sympy, sympy.abc
 from pylab import zeros, plot, legend, grid, show
 
-a = -1.0
-b = 1.0
-N = 20 #number of points on grid
+a = -1.0 # lower integration limit
+b = 1.0 # upper integration limit
+N = 50 # number of points on grid
 
 # test function
 def testFunc(x):
-    return sin(2*x)
+    return cos(2*x)
 
 # transform [-1,1] to [a,b]
 def affineTransform(x, a, b):
@@ -19,8 +19,10 @@ def affineTransform(x, a, b):
 def integrate(C, a, b):
     I = 0.0
     for i in range(0, N):
-        I += C[i]*sympy.integrate(sympy.cos(i*sympy.acos(sympy.abc.x))/(pow(2.0, i-1)), (sympy.abc.x, a, b))
-    print(I)
+        I += C[i]*sympy.integrate(sympy.cos(i*sympy.acos(sympy.abc.x))/(pow(2.0, i-1)), (sympy.abc.x, -1, 1))
+    print("polynomial approximation, I = " + str(I))
+    I_analytical = sympy.integrate(sympy.cos(2*sympy.abc.x), (sympy.abc.x, a, b))
+    print("analytical solution, I_analytical = " + str(I_analytical))
 
 # Form a Chebyshev mesh and perform the Chebyshev interpolation
 # N points on the mesh
@@ -28,13 +30,11 @@ def chebInterpol(N, a, b):
     i = arange(N)
     # Chebyshev nodes on [-1,1]
     x = -cos(pi*(2.0*i + 1.0)/(2.0*(N-1) + 2.0)) 
-    
     # form the (normalized) Chebyshev-Vandermonde matrix
-    TNx = cos(outer(arccos(x), i))/(pow(2.0, i-1))
-    
+    TNx = cos(outer(arccos(x), i))/(pow(2.0, i-1))    
     # scale to physical interval [a,b]
     x = affineTransform(x, a, b)    
-    
+
     f = testFunc(x)
     # C holds the coefficient of each Cheb harmonic
     C = solve(TNx, f)
