@@ -4,9 +4,8 @@ import sympy, sympy.abc
 from pylab import zeros, plot, legend, grid, show
 
 a = 0.0 # lower integration limit
-b = 1.0 # upper integration limit
+b = 3.0 # upper integration limit
 N = 20 # number of points on grid
-
 
 # test function
 def testFunc(x):
