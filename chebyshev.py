@@ -20,7 +20,7 @@ def integrate(C, a, b):
     I = 0.0
     c = (b-a)/2.0
     for i in range(0, N):
-        I += c*C[i]*sympy.integrate(sympy.cos(i*sympy.acos(sympy.abc.x))/(pow(2.0, i-1)), (sympy.abc.x, -1, 1))
+        I += c*C[i]*sympy.integrate(sympy.cos(i*sympy.acos(sympy.abc.x))/(pow(2.0, i-1)), (sympy.abc.x, -1.0, 1.0))
     print("polynomial approximation, I = " + str(I))
     I_analytical = sympy.integrate(sympy.sin(sympy.abc.x), (sympy.abc.x, a, b))
     print("analytical solution, I_analytical = " + str(I_analytical))
