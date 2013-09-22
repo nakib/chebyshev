@@ -31,7 +31,7 @@ def chebInterpol(N, a, b):
     i = arange(N)
     # Chebyshev nodes on [-1,1]
     x = -cos(pi*(2.0*i + 1.0)/(2.0*(N-1) + 2.0)) 
-    print(x)
+    
     # form the (normalized) Chebyshev-Vandermonde matrix
     TNx = cos(outer(arccos(x), i))/(pow(2.0, i-1))    
     # scale to physical interval [a,b]
